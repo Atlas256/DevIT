@@ -1,8 +1,13 @@
 1) db.getCollection('posts').find().skip(5).limit(10).toArray().sort((a, b) => a.author > b.author ? 1 : -1);
+- Вывод 10 постов, пропуская первые 5. Так же сортировка по алфавиту. 
 
 2) db.getCollection('posts').find({"dislike": {$lt: 100}});
+- Вывод постов, dislike которых меньше 100
 
 3) db.getCollection('posts').updateMany({ author: "a1"}, {$inc: {like: 1} });
+- Найти посты, автор которых совпадает со строкой "a1" и увеличить поле like на едининицу
 
 4) db.getCollection('posts').aggregate( [ {$group :{ _id : "Likes", total_salary: { $sum : "$like" }}} ] )
    db.getCollection('posts').find({},{"_id": 0, "title":1})
+- Вывод суммы лайков, во всех постах
+- Вывод поля title, со всех записей пост 
